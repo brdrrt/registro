@@ -1,6 +1,5 @@
 import { ArgoAPI } from "./api.ts";
 import ical from "https://esm.sh/ical-generator@4.0.0";
-import { load } from "https://deno.land/std@0.182.0/dotenv/mod.ts";
 import { serve } from "https://deno.land/std@0.182.0/http/server.ts";
 
 type Credentials = {
@@ -9,12 +8,11 @@ type Credentials = {
   schoolCode: string;
 };
 
-const configData = await load();
 // Caricamento dei dati
 const credentials: Credentials = {
-  username: configData.username ?? Deno.exit(),
-  password: configData.password ?? Deno.exit(),
-  schoolCode: configData.schoolCode ?? Deno.exit(),
+  username: Deno.env.get("username") ?? Deno.exit(),
+  password: Deno.env.get("password") ?? Deno.exit(),
+  schoolCode: Deno.env.get("schoolCode") ?? Deno.exit(),
 }; // TODO: Specificare codice d'errore in uscita
 
 const argoAPI = new ArgoAPI(
