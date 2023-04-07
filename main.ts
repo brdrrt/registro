@@ -1,7 +1,7 @@
 import { ArgoAPI } from "./api.ts";
 import ical from "https://esm.sh/ical-generator@4.0.0";
-import http from "node:http";
 import { load } from "https://deno.land/std@0.182.0/dotenv/mod.ts";
+import { serve } from "https://deno.land/std@0.182.0/http/server.ts";
 
 type Credentials = {
   username: string;
@@ -51,8 +51,14 @@ for (const reminder of reminders) {
   });
 }
 
-http
-  .createServer((_, res) => calendar.serve(res))
-  .listen(3000, "127.0.0.1", () => {
-    console.log("Server in ascolto");
+const handler = (_: Request): Response => {
+  return new Response(calendar.toString(), {
+    status: 200,
+    headers: {
+      "content-type": "text/calendar",
+      "content-disposition": "attachment",
+    },
   });
+};
+
+await serve(handler, { port: 3000 });
