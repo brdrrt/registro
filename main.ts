@@ -35,6 +35,7 @@ const handler = (_: Request): Response => {
     // Aggiorna ogni 12 ore
     calendar.clear();
     updateCalendar(calendar);
+    lastUpdate = Date.now();
   }
   return new Response(calendar.toString(), {
     status: 200,
