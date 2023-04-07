@@ -4,7 +4,6 @@ import {
   TokenSet,
   generators,
 } from "https://esm.sh/openid-client@5.4.0";
-import { randomBytes } from "node:crypto";
 import {
   CookieJar,
   wrapFetch,
@@ -41,7 +40,7 @@ export class ArgoAPI {
 
     this.#client = new argoIssuer.Client({
       client_id: "72fd6dea-d0ab-4bb9-8eaa-3ac24c84886c",
-      client_secret: randomBytes(256).toString("base64"),
+      client_secret: "superdupersecret",
       redirect_uris: ["it.argosoft.didup.famiglia.new://login-callback"],
       response_types: ["code"],
     });
