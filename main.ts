@@ -1,5 +1,5 @@
 import { ArgoAPI } from "./api.ts";
-import ical from "npm:ical-generator";
+import ical from "https://esm.sh/ical-generator@4.0.0";
 import http from "node:http";
 import { load } from "https://deno.land/std@0.182.0/dotenv/mod.ts";
 
