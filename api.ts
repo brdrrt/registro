@@ -1,6 +1,10 @@
-import { BaseClient, Issuer, TokenSet } from "npm:openid-client";
+import {
+  BaseClient,
+  Issuer,
+  TokenSet,
+  generators,
+} from "https://esm.sh/openid-client@5.4.0";
 import { randomBytes } from "node:crypto";
-import { generators } from "npm:openid-client";
 import {
   CookieJar,
   wrapFetch,
