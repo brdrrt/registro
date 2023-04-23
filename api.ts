@@ -122,7 +122,7 @@ export class ArgoAPI {
     const userInfo = await this.#client.userinfo(this.#tokenSet.access_token!);
 
     console.log(
-      `Accesso eseguito come «${userInfo.full_name}», profilo di tipo «${userInfo.user_type}» / «${userInfo.roles}»`
+      `Logged in as «${userInfo.full_name}», account type: «${userInfo.user_type}» / «${userInfo.roles}»`
     );
 
     // Ottenimento del token d'autenticazione
@@ -155,15 +155,15 @@ export class ArgoAPI {
             this.#tokenSet.access_token!,
             this.schoolCode,
             {
-              dataultimoaggiornamento: "2023-01-01 12:25:51.496648",
+              dataultimoaggiornamento: "2023-01-01 12:25:51.496648", // TODO: Salvare i dati ed evitare di richiedere sempre tutto
             }
           )
         ).json()
       ).data.dati[0]; // La risposta arriva in un formato strano, estraggo solo i dati utili
       // Esempio di risposta: ({ success: true | false, msg: any, data: { dati: [<dati utili>] } })
     }
-    throw new Error('Not logged in, plese call method "login()" first', {
-      cause: "Method login() hasn't been called yet",
+    throw new Error("tokenSet and authToken haven't been set yet", {
+      cause: "You need to call login() before doing anything else",
     });
   }
 
