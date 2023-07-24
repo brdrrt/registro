@@ -1,9 +1,4 @@
-import {
-  BaseClient,
-  Issuer,
-  TokenSet,
-  generators,
-} from "https://esm.sh/openid-client@5.4.0";
+import { BaseClient, Issuer, TokenSet, generators } from "npm:openid-client";
 import {
   CookieJar,
   wrapFetch,
