@@ -122,7 +122,9 @@ export class ArgoAPI {
     const userInfo = await this.#client.userinfo(this.#tokenSet.access_token!);
 
     console.log(
-      `Logged in as «${userInfo.full_name}», account type: «${userInfo.user_type}» / «${userInfo.roles}»`
+      `Accesso eseguito
+\tNome: «${userInfo.full_name}»
+\tTipo di profilo: «${userInfo.user_type}» / «${userInfo.roles}»`
     );
 
     // Ottenimento del token d'autenticazione
