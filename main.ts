@@ -1,6 +1,5 @@
 import { ArgoAPI } from "./api.ts";
 import ical, { ICalCalendar } from "https://esm.sh/ical-generator@4.0.0";
-import { serve } from "https://deno.land/std@0.182.0/http/server.ts";
 
 type Credentials = {
   username: string;
@@ -46,7 +45,7 @@ const handler = (_: Request): Response => {
   });
 };
 
-await serve(handler, { port: 3000 });
+Deno.serve(handler);
 
 function updateCalendar(calendar: ICalCalendar) {
   for (const reminder of reminders) {
