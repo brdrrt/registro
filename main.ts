@@ -9,10 +9,10 @@ type Credentials = {
 
 // Caricamento dei dati
 const credentials: Credentials = {
-  username: Deno.env.get("ARGO_USERNAME") ?? Deno.exit(),
-  password: Deno.env.get("ARGO_PASSWORD") ?? Deno.exit(),
-  schoolCode: Deno.env.get("ARGO_SCHOOL_CODE") ?? Deno.exit(),
-}; // TODO: Specificare codice d'errore in uscita
+  username: Deno.env.get("ARGO_USERNAME") ?? printFatalEnvError(),
+  password: Deno.env.get("ARGO_PASSWORD") ?? printFatalEnvError(),
+  schoolCode: Deno.env.get("ARGO_SCHOOL_CODE") ?? printFatalEnvError(),
+};
 
 const argoAPI = new ArgoAPI(
   credentials.username,
@@ -68,4 +68,11 @@ function updateCalendar(calendar: ICalCalendar) {
       email: "https://prof@example.org", // TODO: Inserire vero indirizzo di posta elettronica del professore
     });
   }
+}
+
+function printFatalEnvError() {
+  console.error(
+    "error: Non tutte le variabili d'ambiente sono state specificate (ARGO_USERNAME, ARGO_PASSWORD, ARGO_SCHOOL_CODE)"
+  );
+  return Deno.exit(1);
 }
