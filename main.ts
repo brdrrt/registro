@@ -10,9 +10,9 @@ type Credentials = {
 
 // Caricamento dei dati
 const credentials: Credentials = {
-  username: Deno.env.get("username") ?? Deno.exit(),
-  password: Deno.env.get("password") ?? Deno.exit(),
-  schoolCode: Deno.env.get("schoolCode") ?? Deno.exit(),
+  username: Deno.env.get("ARGO_USERNAME") ?? Deno.exit(),
+  password: Deno.env.get("ARGO_PASSWORD") ?? Deno.exit(),
+  schoolCode: Deno.env.get("ARGO_SCHOOL_CODE") ?? Deno.exit(),
 }; // TODO: Specificare codice d'errore in uscita
 
 const argoAPI = new ArgoAPI(
